@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Statue Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .upload-container {
+            margin-top: 50px;
+        }
+        .statue-preview {
+            margin-top: 30px;
+        }
+        canvas {
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>Minecraft Skin Statue Generator</h1>
+    <p>Upload your Minecraft skin to generate a blueprint for a statue.</p>
+    <div class="upload-container">
+        <input type="file" id="skinFile" accept=".png">
+        <button onclick="generateStatue()">Generate Statue</button>
+    </div>
+    <div class="statue-preview">
+        <canvas id="statueCanvas" width="512" height="512"></canvas>
+    </div>
+    <script>
+        function generateStatue() {
+            const fileInput = document.getElementById('skinFile');
+            const canvas = document.getElementById('statueCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            if (!fileInput.files[0]) {
+                alert('Please upload a Minecraft skin!');
+                return;
+            }
+
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(event) {
+                const img = new Image();
+                img.onload = function() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.drawImage(img, 0, 0, 64, 64, 0, 0, 512, 512); // Stretch for preview
+                    generateBlueprint(img);
+                };
+                img.src = event.target.result;
+            };
+
+            reader.readAsDataURL(file);
+        }
+
+        function generateBlueprint(skinImage) {
+            // Placeholder for server interaction
+            console.log('Generating blueprint for:', skinImage);
+            alert('Blueprint generated (mock). Integrate this with server-side logic for full functionality.');
+        }
+    </script>
+</body>
+</html>
