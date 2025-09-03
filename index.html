@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minecraft Statue Generator</title>
+  <style>
+    /* Reset & Base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+
+    body {
+      background-color: #F0F0F0;
+      color: #333333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    header {
+      margin-bottom: 50px;
+    }
+
+    header h1 {
+      font-size: 3em;
+      color: #4A90E2;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.2em;
+      color: #555555;
+    }
+
+    .upload-card {
+      background-color: #FFFFFF;
+      padding: 40px 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .upload-card h2 {
+      margin-bottom: 20px;
+      color: #4A90E2;
+    }
+
+    input[type="file"] {
+      display: block;
+      margin: 20px auto;
+    }
+
+    button {
+      background-color: #F5A623;
+      color: #FFFFFF;
+      padding: 12px 25px;
+      font-size: 1em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #7ED321;
+      transform: scale(1.05);
+    }
+
+    footer {
+      margin-top: 50px;
+      font-size: 0.9em;
+      color: #777777;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>MC Statue Generator</h1>
+    <p>Upload your Minecraft skin and get a step-by-step statue build!</p>
+  </header>
+
+  <div class="upload-card">
+    <h2>Start Your Statue</h2>
+    <input type="file" id="skinUpload" accept=".png">
+    <button onclick="alert('Feature coming soon!')">Generate Statue</button>
+  </div>
+
+  <footer>
+    &copy; 2025 MC Statue Generator. All rights reserved.
+  </footer>
+
+</body>
+</html>
