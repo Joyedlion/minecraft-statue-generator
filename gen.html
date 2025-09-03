@@ -3,46 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MC Statue Generator - Generator</title>
+<title>MC Statue Generator - Stage 1</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <style>
 /* --- BASE --- */
 * { margin:0; padding:0; box-sizing:border-box; font-family:'Roboto', sans-serif;}
 body { background:#111; color:#EEE; overflow:hidden; }
-a { text-decoration:none; color:inherit; }
-
-header { position:sticky; top:0; background:#111; z-index:100; box-shadow:0 4px 15px rgba(0,0,0,0.5); }
-nav { max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; padding:15px 30px; }
+header { position:sticky; top:0; background:#111; z-index:100; box-shadow:0 4px 15px rgba(0,0,0,0.5);}
+nav { max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; padding:15px 30px;}
 nav h1 { font-size:1.8em; color:#4A90E2;}
-nav ul { display:flex; list-style:none; position:relative;}
-nav ul li { margin-left:25px; position:relative; cursor:pointer; font-weight:500; transition: color 0.3s;}
+nav ul { display:flex; list-style:none;}
+nav ul li { margin-left:25px; cursor:pointer; font-weight:500; transition: color 0.3s;}
 nav ul li:hover { color:#4A90E2; }
-nav ul li ul { display:none; position:absolute; top:35px; left:0; background:#222; padding:10px 0; border-radius:8px; min-width:150px; box-shadow:0 8px 15px rgba(0,0,0,0.3);}
-nav ul li:hover ul { display:block;}
-nav ul li ul li { margin:0; padding:10px 20px; white-space:nowrap;}
-nav ul li ul li:hover { background:#333; color:#4A90E2;}
 
 /* --- GENERATOR PANEL --- */
 #generatorOverlay {
   position:absolute; top:10px; left:10px; z-index:10; color:white;
   background:rgba(0,0,0,0.5); padding:15px; border-radius:10px;
 }
-#generatorOverlay input, #generatorOverlay button { margin:5px 0; padding:10px 20px; border:none; border-radius:5px; cursor:pointer;}
+#generatorOverlay input, #generatorOverlay button {
+  margin:5px 0; padding:10px 20px; border:none; border-radius:5px; cursor:pointer;
+}
 #generatorOverlay button { background:#4A90E2; color:#FFF; transition:0.3s; }
 #generatorOverlay button:hover { background:#7ED321; transform:scale(1.05); }
 
-/* --- SIDE PANEL FOR BLOCKS --- */
-#blockPanel {
-  position:absolute; top:10px; right:10px; width:300px; max-height:90vh;
-  overflow-y:auto; background:rgba(0,0,0,0.7); padding:15px; border-radius:10px;
-}
-#blockPanel h3 { color:#4A90E2; margin-bottom:10px; text-align:center;}
-.blockItem { display:flex; justify-content:space-between; margin:5px 0; color:#CCC; }
-
 /* --- RESPONSIVE --- */
 @media(max-width:768px){
-  #blockPanel { width:90%; max-height:40vh; top:auto; bottom:10px; right:5%; }
-  #generatorOverlay { width:90%; left:5%; top:auto; bottom:60px; display:flex; flex-direction:column; }
+  #generatorOverlay { width:90%; left:5%; top:auto; bottom:10px; display:flex; flex-direction:column; }
 }
 </style>
 </head>
@@ -65,16 +52,7 @@ nav ul li ul li:hover { background:#333; color:#4A90E2;}
 <div id="generatorOverlay">
   <input type="file" id="skinInput" accept=".png">
   <button id="screenshotBtn">Screenshot</button>
-  <button id="downloadBtn">Download Litematica</button>
-  <p>Rotate: Drag | Zoom: Scroll | Move: Arrow Keys</p>
-</div>
-
-<!-- Block List Panel -->
-<div id="blockPanel">
-<h3>Required Blocks</h3>
-<div id="blocksContainer">
-  <!-- Block list items will be dynamically inserted here -->
-</div>
+  <p>Rotate: Drag | Zoom: Scroll</p>
 </div>
 
 <!-- Three.js Renderer -->
@@ -82,7 +60,6 @@ nav ul li ul li:hover { background:#333; color:#4A90E2;}
 
 <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/controls/OrbitControls.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
 <script>
 // --- Scene Setup ---
@@ -112,9 +89,7 @@ scene.add(grid);
 let playerGroup = new THREE.Group();
 scene.add(playerGroup);
 
-// Default skin placeholder
 let skinTexture = null;
-let blocksRequired = {}; // {blockName: quantity}
 
 // --- Load Skin ---
 document.getElementById('skinInput').addEventListener('change', function(e){
@@ -125,7 +100,6 @@ document.getElementById('skinInput').addEventListener('change', function(e){
     let loader = new THREE.TextureLoader();
     skinTexture = loader.load(ev.target.result, () => {
       buildPlayerModel();
-      calculateBlocks();
     });
   }
   reader.readAsDataURL(file);
@@ -138,7 +112,6 @@ function buildPlayerModel(){
   
   let material = new THREE.MeshBasicMaterial({map: skinTexture});
   
-  // Dimensions approximate Minecraft player (width, height, depth)
   let parts = [
     {name:'Head', w:1, h:1, d:1, y:2.75},
     {name:'Body', w:1, h:1.5, d:0.5, y:1.5},
@@ -157,43 +130,11 @@ function buildPlayerModel(){
   });
 }
 
-// --- Calculate Blocks ---
-function calculateBlocks(){
-  blocksRequired = {};
-  playerGroup.children.forEach(c => {
-    let volume = Math.ceil(c.scale.x*c.scale.y*c.scale.z*10); // rough estimate
-    blocksRequired['Stone'] = (blocksRequired['Stone']||0) + volume;
-  });
-  updateBlockPanel();
-}
-
-// --- Update Block Panel ---
-function updateBlockPanel(){
-  let container = document.getElementById('blocksContainer');
-  container.innerHTML = '';
-  for(let block in blocksRequired){
-    let div = document.createElement('div');
-    div.className = 'blockItem';
-    div.innerHTML = `<span>${block}</span><span>${blocksRequired[block]}</span>`;
-    container.appendChild(div);
-  }
-}
-
 // --- Screenshot ---
 document.getElementById('screenshotBtn').addEventListener('click', function(){
   renderer.render(scene, camera);
   renderer.domElement.toBlob(function(blob){
     saveAs(blob, 'statue.png');
-  });
-});
-
-// --- Litematica Download (placeholder example) ---
-document.getElementById('downloadBtn').addEventListener('click', function(){
-  let zip = new JSZip();
-  let schematicContent = "// Litematica schematic data would go here";
-  zip.file("statue.mca", schematicContent);
-  zip.generateAsync({type:"blob"}).then(function(content){
-    saveAs(content, "statue.zip");
   });
 });
 
@@ -205,7 +146,7 @@ function animate(){
 }
 animate();
 
-// --- Resize ---
+// --- Handle Resize ---
 window.addEventListener('resize', () => {
   camera.aspect = window.innerWidth/window.innerHeight;
   camera.updateProjectionMatrix();
