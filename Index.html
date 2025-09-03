@@ -1,68 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minecraft Statue Generator</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 20px;
-        }
-        .upload-container {
-            margin-top: 50px;
-        }
-        .statue-preview {
-            margin-top: 30px;
-        }
-        canvas {
-            border: 1px solid #ccc;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minecraft Statue Generator</title>
+  <style>
+    /* Reset & Base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+
+    body {
+      background-color: #F0F0F0;
+      color: #333333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    header {
+      margin-bottom: 50px;
+    }
+
+    header h1 {
+      font-size: 3em;
+      color: #4A90E2;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.2em;
+      color: #555555;
+    }
+
+    .upload-card {
+      background-color: #FFFFFF;
+      padding: 40px 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .upload-card h2 {
+      margin-bottom: 20px;
+      color: #4A90E2;
+    }
+
+    input[type="file"] {
+      display: block;
+      margin: 20px auto;
+    }
+
+    button {
+      background-color: #F5A623;
+      color: #FFFFFF;
+      padding: 12px 25px;
+      font-size: 1em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #7ED321;
+      transform: scale(1.05);
+    }
+
+    footer {
+      margin-top: 50px;
+      font-size: 0.9em;
+      color: #777777;
+    }
+  </style>
 </head>
 <body>
-    <h1>Minecraft Skin Statue Generator</h1>
-    <p>Upload your Minecraft skin to generate a blueprint for a statue.</p>
-    <div class="upload-container">
-        <input type="file" id="skinFile" accept=".png">
-        <button onclick="generateStatue()">Generate Statue</button>
-    </div>
-    <div class="statue-preview">
-        <canvas id="statueCanvas" width="512" height="512"></canvas>
-    </div>
-    <script>
-        function generateStatue() {
-            const fileInput = document.getElementById('skinFile');
-            const canvas = document.getElementById('statueCanvas');
-            const ctx = canvas.getContext('2d');
-            
-            if (!fileInput.files[0]) {
-                alert('Please upload a Minecraft skin!');
-                return;
-            }
 
-            const file = fileInput.files[0];
-            const reader = new FileReader();
+  <header>
+    <h1>MC Statue Generator</h1>
+    <p>Upload your Minecraft skin and get a step-by-step statue build!</p>
+  </header>
 
-            reader.onload = function(event) {
-                const img = new Image();
-                img.onload = function() {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    ctx.drawImage(img, 0, 0, 64, 64, 0, 0, 512, 512); // Stretch for preview
-                    generateBlueprint(img);
-                };
-                img.src = event.target.result;
-            };
+  <div class="upload-card">
+    <h2>Start Your Statue</h2>
+    <input type="file" id="skinUpload" accept=".png">
+    <button onclick="alert('Feature coming soon!')">Generate Statue</button>
+  </div>
 
-            reader.readAsDataURL(file);
-        }
+  <footer>
+    &copy; 2025 MC Statue Generator. All rights reserved.
+  </footer>
 
-        function generateBlueprint(skinImage) {
-            // Placeholder for server interaction
-            console.log('Generating blueprint for:', skinImage);
-            alert('Blueprint generated (mock). Integrate this with server-side logic for full functionality.');
-        }
-    </script>
 </body>
 </html>
