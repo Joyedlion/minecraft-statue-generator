@@ -1,145 +1,190 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Joyed Store — Plugins</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joyedlion Plugins Store</title>
   <style>
-    :root{
-      --bg:#0f1720;
-      --card:#0b1220;
-      --muted:#98a0b3;
-      --accent:#1e90ff;
-      --glass: rgba(255,255,255,0.03);
-      --radius:10px;
-      --max-width:1100px;
-      color-scheme: dark;
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: #ffffff;
+      color: #333;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{margin:0;background:linear-gradient(180deg,#07101a 0%, #081526 100%);color:#e6eef8;}
-    .container{max-width:var(--max-width);margin:0 auto;padding:20px;}
-    .site-header{border-bottom:1px solid rgba(255,255,255,0.03);background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);}
-    .header-inner{display:flex;align-items:center;gap:16px;padding:14px 20px;}
-    .logo{font-weight:700;letter-spacing:0.4px;text-decoration:none;color:var(--accent);font-size:1.15rem;}
-    .search-wrap{flex:1}
-    input[type="search"]{width:100%;padding:10px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:var(--glass);color:inherit;}
-    .top-actions{display:flex;gap:8px}
-    .btn{background:var(--accent);color:#021226;border:none;padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:600;}
-    .btn.small{padding:6px 8px;font-size:.9rem}
-    .btn.ghost{background:transparent;color:var(--muted);border:1px solid rgba(255,255,255,0.04)}
-    .filters{display:flex;gap:18px;align-items:center;margin:18px 0;flex-wrap:wrap;}
-    .filter-group{display:flex;flex-direction:column;gap:6px}
-    .filter-group select{padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:var(--glass);color:inherit;min-width:150px}
-    .tags-list{display:flex;gap:8px;flex-wrap:wrap}
-    .tag{padding:6px 8px;background:rgba(255,255,255,0.03);border-radius:999px;cursor:pointer;font-size:.9rem;color:var(--muted)}
-    .grid{display:grid;grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));gap:16px;margin:8px 0 60px;}
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:var(--radius);padding:14px;box-shadow: 0 6px 14px rgba(2,8,23,0.6);display:flex;flex-direction:column;gap:10px;min-height:170px;}
-    .card .thumb{height:120px;border-radius:8px;overflow:hidden;background:linear-gradient(135deg,#0b1220,#071422);display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:600;}
-    .card h3{margin:0;font-size:1rem}
-    .card p{margin:0;font-size:.92rem;color:var(--muted)}
-    .card .meta{display:flex;justify-content:space-between;align-items:center;margin-top:auto}
-    .badge{padding:6px 8px;border-radius:6px;background:rgba(255,255,255,0.03);font-weight:700}
-    .modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(2,6,12,0.6);backdrop-filter:blur(4px);}
-    .modal[aria-hidden="true"]{display:none}
-    .modal-content{width:min(900px,95%);background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:12px;padding:18px;position:relative;}
-    .modal-close{position:absolute;right:14px;top:14px;background:transparent;border:none;color:var(--muted);font-size:18px;cursor:pointer}
-    .drawer{position:fixed;right:0;top:0;height:100vh;width:380px;background:#071523;padding:18px;border-left:1px solid rgba(255,255,255,0.03);transform:translateX(100%);transition:transform .22s ease;}
-    .drawer[aria-hidden="false"]{transform:translateX(0)}
-    .drawer .modal-close{right:12px;top:12px}
-    .drawer label{display:block;margin:10px 0;font-size:.95rem}
-    .drawer input, .drawer textarea, .drawer select{width:100%;padding:8px;border-radius:8px;background:var(--glass);border:1px solid rgba(255,255,255,0.03);color:inherit}
-    .form-actions{display:flex;gap:10px;align-items:center;margin-top:10px}
-    .muted{color:var(--muted);font-size:.9rem}
-    .site-footer{display:flex;justify-content:space-between;gap:8px;padding:18px 0;border-top:1px solid rgba(255,255,255,0.03);margin-top:40px;font-size:.9rem}
-    @media (max-width:720px){.filters{flex-direction:column;align-items:stretch}.drawer{width:100%}}
+
+    header {
+      background: #0a0a0a;
+      color: #fff;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 1rem;
+    }
+
+    nav a:hover {
+      color: #00aaff;
+    }
+
+    .cart {
+      margin-left: 30px;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .plugin-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .plugin-card {
+      border: 1px solid #e5e5e5;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .plugin-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+
+    .plugin-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      background: #f7f7f7;
+    }
+
+    .plugin-card-content {
+      padding: 20px;
+    }
+
+    .plugin-card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+      color: #222;
+    }
+
+    .plugin-card p {
+      margin: 0 0 15px 0;
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    .price {
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      color: #00aaff;
+    }
+
+    .buy-btn {
+      display: inline-block;
+      padding: 10px 16px;
+      background: #00aaff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: background 0.2s ease;
+    }
+
+    .buy-btn:hover {
+      background: #0088cc;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 30px;
+      background: #f5f5f5;
+      color: #666;
+      font-size: 0.9rem;
+      margin-top: 50px;
+    }
   </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="logo" href="#">Joyed Store</a>
-      <div class="search-wrap">
-        <input id="search" type="search" placeholder="Search plugins..." />
-      </div>
-      <nav class="top-actions">
-        <button id="add-product-btn" class="btn small">+ Add Plugin</button>
-      </nav>
-    </div>
+  <header>
+    <h1>Joyedlion Store</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="plugins.html">Plugins</a>
+      <a href="mods.html">Mods</a>
+      <a href="contact.html">Contact</a>
+      <span class="cart">🛒 Cart (0)</span>
+    </nav>
   </header>
 
-  <main class="container">
-    <section id="products" class="grid"></section>
-    <div id="empty" class="muted" hidden>No plugins found.</div>
+  <main>
+    <h2>Plugins</h2>
+    <div class="plugin-grid">
+
+      <div class="plugin-card">
+        <img src="https://via.placeholder.com/400x180" alt="JoyedWarps">
+        <div class="plugin-card-content">
+          <h3>JoyedWarps</h3>
+          <p>A lightweight warp plugin that keeps things simple and easy for players.</p>
+          <div class="price">$5.00</div>
+          <a href="#" class="buy-btn">Buy Now</a>
+        </div>
+      </div>
+
+      <div class="plugin-card">
+        <img src="https://via.placeholder.com/400x180" alt="JoyedBible">
+        <div class="plugin-card-content">
+          <h3>JoyedBible</h3>
+          <p>Bring the Bible into Minecraft with random verses and scripture commands.</p>
+          <div class="price">$7.00</div>
+          <a href="#" class="buy-btn">Buy Now</a>
+        </div>
+      </div>
+
+      <div class="plugin-card">
+        <img src="https://via.placeholder.com/400x180" alt="Goose">
+        <div class="plugin-card-content">
+          <h3>Goose</h3>
+          <p>Find hidden geese around the world, track progress, and compete with friends.</p>
+          <div class="price">$3.00</div>
+          <a href="#" class="buy-btn">Buy Now</a>
+        </div>
+      </div>
+
+    </div>
   </main>
 
-  <!-- Product modal -->
-  <div id="product-modal" class="modal" aria-hidden="true">
-    <div class="modal-content">
-      <button id="modal-close" class="modal-close">✕</button>
-      <div id="modal-body"></div>
-    </div>
+  <div class="footer">
+    © 2025 Joyedlion. All rights reserved.
   </div>
-
-  <!-- Add product drawer -->
-  <div id="add-drawer" class="drawer" aria-hidden="true">
-    <div class="drawer-inner">
-      <button id="drawer-close" class="modal-close">✕</button>
-      <h2>Add Plugin</h2>
-      <form id="add-product-form">
-        <label>Title<input name="title" required /></label>
-        <label>Short description<input name="shortDesc" required /></label>
-        <label>Long description<textarea name="longDesc" rows="4"></textarea></label>
-        <label>Price (USD)<input name="price" type="number" min="0" step="0.01" /></label>
-        <label>Tags (comma separated)<input name="tags" /></label>
-        <label>Image URL<input name="image" /></label>
-        <div class="form-actions">
-          <button type="submit" class="btn">Save plugin</button>
-          <button type="button" id="clear-products" class="btn ghost">Clear all</button>
-        </div>
-      </form>
-      <p class="muted">Plugins are stored in your browser for now (localStorage).</p>
-    </div>
-  </div>
-
-  <footer class="site-footer container">
-    <div>Joyed Store — Plugins</div>
-    <div class="muted">Static demo • payments not implemented</div>
-  </footer>
-
-  <script>
-    const SAMPLE_PLUGINS = [
-      {id:'joyedwarps',title:'JoyedWarps',shortDesc:'Lightweight warp management plugin.',longDesc:'Simple warp commands, supports per-player warps.',price:0,tags:['teleport','utility'],image:''},
-      {id:'goose',title:'Goose',shortDesc:'Collectible goose hunt plugin.',longDesc:'Players find numbered geese with placeholders.',price:2.99,tags:['minigame'],image:''},
-      {id:'joyed-bible',title:'JoyedBible',shortDesc:'Random Bible verse broadcaster.',longDesc:'Broadcasts verses in chat with /bibleverse command.',price:0,tags:['chat'],image:''}
-    ];
-    const STORAGE_KEY = 'joyed_plugins_v1';
-    function $(s){return document.querySelector(s)}
-    let products = load();
-    function load(){const r=localStorage.getItem(STORAGE_KEY);if(!r){localStorage.setItem(STORAGE_KEY,JSON.stringify(SAMPLE_PLUGINS));return SAMPLE_PLUGINS.slice()}try{return JSON.parse(r)}catch{return SAMPLE_PLUGINS.slice()}}
-    function save(){localStorage.setItem(STORAGE_KEY,JSON.stringify(products))}
-    const productsEl=$('#products');const search=$('#search');
-    function render(){const q=search.value.toLowerCase();const list=products.filter(p=>(p.title+p.shortDesc+(p.tags||[]).join(' ')).toLowerCase().includes(q));
-      productsEl.innerHTML=''; if(!list.length){$('#empty').hidden=false;return}else{$('#empty').hidden=true}
-      list.forEach(p=>{const c=document.createElement('div');c.className='card';c.innerHTML=`
-        <div class="thumb">${p.image?`<img src="${p.image}" style="width:100%;height:100%;object-fit:cover">`:p.title[0]}</div>
-        <h3>${p.title}</h3><p>${p.shortDesc}</p>
-        <div class="meta"><div class="badge">${p.price>0?'$'+p.price.toFixed(2):'Free'}</div>
-        <button class="btn small" onclick="openModal('${p.id}')">View</button></div>`;productsEl.appendChild(c)})}
-    function openModal(id){const p=products.find(x=>x.id===id);if(!p)return;$('#product-modal').setAttribute('aria-hidden','false');
-      $('#modal-body').innerHTML=`
-        <h2>${p.title}</h2><p>${p.shortDesc}</p><p>${p.longDesc}</p>
-        <div class="muted">Tags: ${(p.tags||[]).join(', ')}</div>
-        <div style="margin-top:12px"><button class="btn">${p.price>0?'Buy — $'+p.price.toFixed(2):'Download'}</button></div>`}
-    function closeModal(){$('#product-modal').setAttribute('aria-hidden','true')}
-    $('#modal-close').onclick=closeModal;$('#product-modal').onclick=e=>{if(e.target.id==='product-modal')closeModal()}
-    $('#add-product-btn').onclick=()=>$('#add-drawer').setAttribute('aria-hidden','false')
-    $('#drawer-close').onclick=()=>$('#add-drawer').setAttribute('aria-hidden','true')
-    $('#add-product-form').onsubmit=e=>{e.preventDefault();const f=new FormData(e.target);const o={id:f.get('title').toLowerCase().replace(/\\s+/g,'-')+Date.now(),title:f.get('title'),shortDesc:f.get('shortDesc'),longDesc:f.get('longDesc'),price:Number(f.get('price')||0),tags:(f.get('tags')||'').split(',').map(s=>s.trim()).filter(Boolean),image:f.get('image')};products.unshift(o);save();render();$('#add-drawer').setAttribute('aria-hidden','true');e.target.reset();}
-    $('#clear-products').onclick=()=>{if(confirm('Reset plugins?')){localStorage.removeItem(STORAGE_KEY);products=load();render()}}
-    search.oninput=()=>render();
-    render();
-  </script>
 </body>
 </html>
