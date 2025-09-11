@@ -1,250 +1,175 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Joyedlion | Official Website</title>
-  <link rel="icon" href="favicon.png" type="image/png">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Joyed Store — Plugins</title>
   <style>
-    /* === Global === */
-    body {
-      margin: 0;
-      font-family: "Segoe UI", sans-serif;
-      background: #0b0c10;
-      color: #e6e6e6;
+    :root{
+      --bg:#0f1720;
+      --card:#0b1220;
+      --muted:#98a0b3;
+      --accent:#1e90ff;
+      --glass: rgba(255,255,255,0.03);
+      --radius:10px;
+      --max-width:1100px;
+      color-scheme: dark;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
-    a {
-      text-decoration: none;
-      color: #1f8bff;
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,#07101a 0%, #081526 100%);
+      color:#e6eef8;
     }
-    h1, h2 {
-      margin: 0 0 15px;
-    }
-
-    /* === Navbar === */
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 40px;
-      background: #101217;
-      border-bottom: 1px solid #1f8bff;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-    nav .logo {
-      font-weight: bold;
-      font-size: 1.4em;
-      color: #1f8bff;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-      margin: 0;
-      padding: 0;
-    }
-    nav li a {
-      color: #e6e6e6;
-      transition: color 0.3s;
-    }
-    nav li a:hover {
-      color: #1f8bff;
-    }
-
-    /* === Hero Section === */
-    .hero {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 80px 10%;
-      background: #0f1117;
-    }
-    .hero-text {
-      max-width: 500px;
-    }
-    .hero-text h1 {
-      font-size: 2.5em;
-      color: #ffffff;
-    }
-    .hero-text p {
-      margin: 15px 0;
-      font-size: 1.1em;
-      color: #aaa;
-    }
-    .hero-buttons {
-      margin-top: 20px;
-    }
-    .hero-buttons a {
-      padding: 12px 20px;
-      margin-right: 10px;
-      border-radius: 6px;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-    .btn-primary {
-      background: #1f8bff;
-      color: #fff;
-    }
-    .btn-primary:hover {
-      background: #1470d1;
-    }
-    .btn-secondary {
-      border: 1px solid #1f8bff;
-      color: #1f8bff;
-    }
-    .btn-secondary:hover {
-      background: #1f8bff;
-      color: #fff;
-    }
-    .live-status {
-      margin-top: 15px;
-      padding: 8px 16px;
-      border: 1px solid #1f8bff;
-      border-radius: 8px;
-      display: inline-block;
-      color: #1f8bff;
-      font-weight: bold;
-    }
-
-    /* === Sections === */
-    section {
-      padding: 80px 10%;
-    }
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-    .card {
-      background: #101217;
-      padding: 25px;
-      border-radius: 8px;
-      border: 1px solid #1c1f27;
-      transition: transform 0.3s, border-color 0.3s;
-    }
-    .card:hover {
-      transform: translateY(-5px);
-      border-color: #1f8bff;
-    }
-    .card h3 {
-      margin-bottom: 10px;
-      color: #1f8bff;
-    }
-
-    /* === Footer === */
-    footer {
-      background: #0f1117;
-      text-align: center;
-      padding: 20px;
-      font-size: 0.9em;
-      color: #666;
-    }
+    .container{max-width:var(--max-width);margin:0 auto;padding:20px;}
+    .site-header{border-bottom:1px solid rgba(255,255,255,0.03);background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);}
+    .header-inner{display:flex;align-items:center;gap:16px;padding:14px 20px;}
+    .logo{font-weight:700;letter-spacing:0.4px;text-decoration:none;color:var(--accent);font-size:1.15rem;}
+    .search-wrap{flex:1}
+    input[type="search"]{width:100%;padding:10px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:var(--glass);color:inherit;outline:none;}
+    .btn{background:var(--accent);color:#021226;border:none;padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:600;}
+    .btn.small{padding:6px 8px;font-size:.9rem}
+    .filters{display:flex;gap:18px;align-items:center;margin:18px 0;flex-wrap:wrap;}
+    .filter-group{display:flex;flex-direction:column;gap:6px}
+    .filter-group select{padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:var(--glass);color:inherit;min-width:150px}
+    .grid{display:grid;grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));gap:16px;margin:8px 0 60px;}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:var(--radius);padding:14px;box-shadow: 0 6px 14px rgba(2,8,23,0.6);display:flex;flex-direction:column;gap:10px;min-height:170px;}
+    .card .thumb{height:120px;border-radius:8px;overflow:hidden;background:linear-gradient(135deg,#0b1220,#071422);display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:600;}
+    .card h3{margin:0;font-size:1rem}
+    .card p{margin:0;font-size:.92rem;color:var(--muted)}
+    .card .meta{display:flex;justify-content:space-between;align-items:center;margin-top:auto}
+    .badge{padding:6px 8px;border-radius:6px;background:rgba(255,255,255,0.03);font-weight:700}
+    .modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(2,6,12,0.6);backdrop-filter:blur(4px);}
+    .modal[aria-hidden="true"]{display:none}
+    .modal-content{width:min(900px,95%);background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);border-radius:12px;padding:18px;position:relative;}
+    .modal-close{position:absolute;right:14px;top:14px;background:transparent;border:none;color:var(--muted);font-size:18px;cursor:pointer}
+    .site-footer{display:flex;justify-content:space-between;gap:8px;padding:18px 0;border-top:1px solid rgba(255,255,255,0.03);margin-top:40px;font-size:.9rem}
+    @media (max-width:720px){.filters{flex-direction:column;align-items:stretch}}
   </style>
 </head>
 <body>
-
-  <!-- Navbar -->
-  <nav>
-    <div class="logo">Joyedlion</div>
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#content">Content</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#community">Community</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-
-  <!-- Hero -->
-  <section class="hero">
-    <div class="hero-text">
-      <h1>Welcome to Joyedlion</h1>
-      <p>I’m a Minecraft & variety creator on YouTube + Twitch. Join me on my adventures, events, and lore-driven series!</p>
-      <div class="hero-buttons">
-        <a href="https://youtube.com/@Joyedlion" target="_blank" class="btn-primary">YouTube</a>
-        <a href="https://twitch.tv/Joyedlion" target="_blank" class="btn-secondary">Twitch</a>
-      </div>
-      <div id="liveStatus" class="live-status">Checking live status...</div>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="#">Joyed Store</a>
+      <div class="search-wrap"><input id="search" type="search" placeholder="Search plugins..."></div>
     </div>
-  </section>
+  </header>
 
-  <!-- About -->
-  <section id="about">
-    <h2>About Me</h2>
-    <div class="cards">
-      <div class="card">
-        <h3>Who I Am</h3>
-        <p>A content creator passionate about Minecraft, lore, and community-driven fun. Always building new worlds & stories.</p>
+  <main class="container">
+    <section class="filters">
+      <div class="filter-group">
+        <label>Price</label>
+        <select id="price-filter">
+          <option value="all">All</option>
+          <option value="free">Free</option>
+          <option value="paid">Paid</option>
+        </select>
       </div>
-      <div class="card">
-        <h3>My Lore</h3>
-        <p>Explorer turned pirate cursed by the JoyedEssence, now on a journey to find a way back to normal.</p>
-      </div>
+    </section>
+
+    <section id="products" class="grid"></section>
+    <div id="empty" hidden><p>No plugins found.</p></div>
+  </main>
+
+  <!-- Modal -->
+  <div id="product-modal" class="modal" aria-hidden="true">
+    <div class="modal-content">
+      <button id="modal-close" class="modal-close">✕</button>
+      <div id="modal-body"></div>
     </div>
-  </section>
+  </div>
 
-  <!-- Content -->
-  <section id="content">
-    <h2>My Content</h2>
-    <div class="cards">
-      <div class="card">
-        <h3>YouTube</h3>
-        <p>Let’s Plays, shorts, lore videos, and more.</p>
-        <a href="https://youtube.com/@Joyedlion" target="_blank">Visit Channel →</a>
-      </div>
-      <div class="card">
-        <h3>Twitch</h3>
-        <p>Live streams of Minecraft events, challenges, and adventures with the community.</p>
-        <a href="https://twitch.tv/Joyedlion" target="_blank">Watch Live →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects -->
-  <section id="projects">
-    <h2>Projects</h2>
-    <div class="cards">
-      <div class="card">
-        <h3>Elementrix</h3>
-        <p>My custom Minecraft adventure map series.</p>
-      </div>
-      <div class="card">
-        <h3>Joyania</h3>
-        <p>A unique Minecraft server with custom plugins & mechanics.</p>
-      </div>
-      <div class="card">
-        <h3>JoyedEssence</h3>
-        <p>The ongoing lore behind my streaming persona.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Community -->
-  <section id="community">
-    <h2>Community</h2>
-    <p>Come hang out with the Joyedlion community on Discord & in Minecraft servers.</p>
-    <a href="https://discord.gg/" target="_blank" class="btn-primary">Join Discord</a>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:joyedlion@example.com">joyedlion@example.com</a></p>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    © 2025 Joyedlion | All Rights Reserved
+  <footer class="site-footer container">
+    <div>Joyed Plugins Page</div>
+    <div class="muted">Static demo • free/paid filter only</div>
   </footer>
 
   <script>
-    // Simulated live status (replace with API later)
-    const liveStatus = document.getElementById("liveStatus");
-    const isLive = Math.random() > 0.5;
-    liveStatus.textContent = isLive ? "🔵 Joyed is LIVE on Twitch!" : "⚫ Currently Offline";
-  </script>
+    const PRODUCTS = [
+      {
+        id: 'joyedwarps',
+        title: 'JoyedWarps',
+        shortDesc: 'Lightweight warp management plugin for servers.',
+        longDesc: 'Simple warp commands, permissions-ready, supports per-player warps and cross-world. Ideal for small to mid sized servers.',
+        price: 0
+      },
+      {
+        id: 'goose',
+        title: 'Goose',
+        shortDesc: 'Collectible goose hunt plugin with placeholders.',
+        longDesc: 'Players find numbered geese; each is unique per player. Includes placeholders and admin commands (find/remove).',
+        price: 2.99
+      },
+      {
+        id: 'joyedbible',
+        title: 'JoyedBible',
+        shortDesc: 'Verse broadcasting & /bibleverse command.',
+        longDesc: 'Sends a random Bible verse in chat on /bibleverse. Easily editable verse list and supports scheduled sends.',
+        price: 0
+      }
+    ];
 
+    const productsEl = document.getElementById('products');
+    const searchInput = document.getElementById('search');
+    const priceFilter = document.getElementById('price-filter');
+    const modal = document.getElementById('product-modal');
+    const modalBody = document.getElementById('modal-body');
+    const modalClose = document.getElementById('modal-close');
+
+    function renderProducts(){
+      const q = searchInput.value.trim().toLowerCase();
+      const price = priceFilter.value;
+      const filtered = PRODUCTS.filter(p=>{
+        if(price==='free' && p.price>0) return false;
+        if(price==='paid' && p.price===0) return false;
+        if(q && !(`${p.title} ${p.shortDesc}`.toLowerCase().includes(q))) return false;
+        return true;
+      });
+      productsEl.innerHTML='';
+      if(filtered.length===0){document.getElementById('empty').hidden=false;return;}
+      document.getElementById('empty').hidden=true;
+      filtered.forEach(p=>{
+        const card=document.createElement('article');
+        card.className='card';
+        card.innerHTML=`
+          <div class="thumb">${p.title[0]}</div>
+          <div><h3>${p.title}</h3><p>${p.shortDesc}</p></div>
+          <div class="meta">
+            <div></div>
+            <div style="display:flex;gap:8px;align-items:center">
+              <div class="badge">${p.price>0? '$'+p.price.toFixed(2):'Free'}</div>
+              <button class="btn small" data-id="${p.id}">View</button>
+            </div>
+          </div>
+        `;
+        productsEl.appendChild(card);
+      });
+    }
+
+    function openModal(id){
+      const p=PRODUCTS.find(x=>x.id===id);
+      if(!p) return;
+      modal.setAttribute('aria-hidden','false');
+      modalBody.innerHTML=`
+        <h2>${p.title}</h2>
+        <p>${p.shortDesc}</p>
+        <p>${p.longDesc}</p>
+        <p><strong>${p.price>0? 'Price: $'+p.price.toFixed(2):'Free download'}</strong></p>
+        <button class="btn">${p.price>0?'Buy (not active yet)':'Download'}</button>
+      `;
+    }
+    function closeModal(){modal.setAttribute('aria-hidden','true');}
+
+    searchInput.addEventListener('input',renderProducts);
+    priceFilter.addEventListener('change',renderProducts);
+    productsEl.addEventListener('click',e=>{
+      if(e.target.dataset.id) openModal(e.target.dataset.id);
+    });
+    modalClose.onclick=closeModal;
+    modal.onclick=e=>{if(e.target===modal) closeModal();};
+
+    renderProducts();
+  </script>
 </body>
 </html>
