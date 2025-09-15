@@ -1,190 +1,195 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Joyedlion Plugins Store</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      background: #ffffff;
-      color: #333;
-    }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Joyedforlife — Minecraft MMORPG</title>
 
-    header {
-      background: #0a0a0a;
-      color: #fff;
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-    header h1 {
-      margin: 0;
-      font-size: 1.8rem;
-    }
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
 
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      margin-left: 20px;
-      font-size: 1rem;
-    }
-
-    nav a:hover {
-      color: #00aaff;
-    }
-
-    .cart {
-      margin-left: 30px;
-      font-size: 1.2rem;
-      cursor: pointer;
-    }
-
-    main {
-      max-width: 1200px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    .plugin-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-    }
-
-    .plugin-card {
-      border: 1px solid #e5e5e5;
-      border-radius: 10px;
-      overflow: hidden;
-      background: #fff;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .plugin-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-    }
-
-    .plugin-card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      background: #f7f7f7;
-    }
-
-    .plugin-card-content {
-      padding: 20px;
-    }
-
-    .plugin-card h3 {
-      margin-top: 0;
-      margin-bottom: 10px;
-      font-size: 1.3rem;
-      color: #222;
-    }
-
-    .plugin-card p {
-      margin: 0 0 15px 0;
-      font-size: 0.95rem;
-      color: #555;
-      line-height: 1.5;
-    }
-
-    .price {
-      font-weight: bold;
-      font-size: 1.1rem;
-      margin-bottom: 10px;
-      color: #00aaff;
-    }
-
-    .buy-btn {
-      display: inline-block;
-      padding: 10px 16px;
-      background: #00aaff;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      text-decoration: none;
-      font-size: 0.95rem;
-      transition: background 0.2s ease;
-    }
-
-    .buy-btn:hover {
-      background: #0088cc;
-    }
-
-    .footer {
-      text-align: center;
-      padding: 30px;
-      background: #f5f5f5;
-      color: #666;
-      font-size: 0.9rem;
-      margin-top: 50px;
-    }
-  </style>
+  <!-- Social / SEO -->
+  <meta name="description" content="Joyedforlife — a Minecraft MMORPG. Join, quest, trade, and explore. play.joyedforlife.xyz" />
 </head>
 <body>
-  <header>
-    <h1>Joyedlion Store</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="plugins.html">Plugins</a>
-      <a href="mods.html">Mods</a>
-      <a href="contact.html">Contact</a>
-      <span class="cart">🛒 Cart (0)</span>
-    </nav>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/">Joyedforlife</a>
+
+      <nav class="main-nav" id="nav">
+        <a href="#home">Home</a>
+        <a href="#news">News</a>
+        <a href="#items">Items</a>
+        <a href="#classes">Classes</a>
+        <a href="#map">Map</a>
+        <a href="#stats">Stats</a>
+        <a href="#community">Community</a>
+      </nav>
+
+      <div class="header-cta">
+        <a class="btn btn-primary" href="#howto">Join: play.joyedforlife.xyz</a>
+        <button id="mobileToggle" class="hamburger" aria-label="menu">☰</button>
+      </div>
+    </div>
   </header>
 
   <main>
-    <h2>Plugins</h2>
-    <div class="plugin-grid">
+    <!-- Hero -->
+    <section id="home" class="hero">
+      <div class="container hero-grid">
+        <div class="hero-left">
+          <h1>Joyedforlife — The Minecraft MMORPG</h1>
+          <p>Explore handcrafted provinces, complete quests, master classes, and trade for rich loot.<br/>No mods required — just Minecraft: Java Edition.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#howto">How to Join</a>
+            <a class="btn btn-ghost" href="#news">Latest News</a>
+          </div>
 
-      <div class="plugin-card">
-        <img src="https://via.placeholder.com/400x180" alt="JoyedWarps">
-        <div class="plugin-card-content">
-          <h3>JoyedWarps</h3>
-          <p>A lightweight warp plugin that keeps things simple and easy for players.</p>
-          <div class="price">$5.00</div>
-          <a href="#" class="buy-btn">Buy Now</a>
+          <ul class="quick-info">
+            <li><strong>IP</strong> play.joyedforlife.xyz</li>
+            <li><strong>Mode</strong> MMORPG</li>
+            <li><strong>Map</strong> Live world map</li>
+          </ul>
+        </div>
+
+        <div class="hero-right">
+          <!-- Placeholder card gallery -->
+          <div class="card stats-card">
+            <h3>Server Stats</h3>
+            <div class="stat-grid">
+              <div><span class="num">1,234</span><small>Players</small></div>
+              <div><span class="num">8</span><small>Provinces</small></div>
+              <div><span class="num">2,147</span><small>Items</small></div>
+            </div>
+          </div>
+
+          <div class="card map-card">
+            <h3>Live Map</h3>
+            <div class="map-placeholder">[ Map preview ]</div>
+            <a class="btn btn-ghost" href="#map">Open Map</a>
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="plugin-card">
-        <img src="https://via.placeholder.com/400x180" alt="JoyedBible">
-        <div class="plugin-card-content">
-          <h3>JoyedBible</h3>
-          <p>Bring the Bible into Minecraft with random verses and scripture commands.</p>
-          <div class="price">$7.00</div>
-          <a href="#" class="buy-btn">Buy Now</a>
+    <!-- How to Join -->
+    <section id="howto" class="section">
+      <div class="container">
+        <h2>How to join</h2>
+        <ol class="howto-list">
+          <li>Open Minecraft: Java Edition</li>
+          <li>Menu → Multiplayer → Add Server</li>
+          <li>Server address: <strong>play.joyedforlife.xyz</strong></li>
+          <li>Connect and choose your class — begin your journey!</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="section">
+      <div class="container features-grid">
+        <article class="feature">
+          <h3>Items</h3>
+          <p>Find and craft legendary items. Check our item database to learn combos and enchants.</p>
+          <a class="link" href="#items">Browse Items →</a>
+        </article>
+
+        <article class="feature">
+          <h3>Classes</h3>
+          <p>Unique classes with abilities and synergies. Level up, unlock skills, and optimize builds.</p>
+          <a class="link" href="#classes">View Classes →</a>
+        </article>
+
+        <article class="feature">
+          <h3>Map</h3>
+          <p>Explore handcrafted continents and secret dungeons recorded on the live map.</p>
+          <a class="link" href="#map">Open Map →</a>
+        </article>
+
+        <article class="feature">
+          <h3>Trade & Economy</h3>
+          <p>Player-driven economy — auctions, markets, and guild-led territories.</p>
+          <a class="link" href="#stats">Market Stats →</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- News -->
+    <section id="news" class="section news-section">
+      <div class="container">
+        <h2>Latest News</h2>
+        <div id="newsList" class="news-grid">
+          <!-- JS populates -->
+        </div>
+        <a class="btn btn-ghost" href="#community">View all news</a>
+      </div>
+    </section>
+
+    <!-- Placeholder deeper pages -->
+    <section id="items" class="section placeholder">
+      <div class="container">
+        <h2>Items</h2>
+        <p>Item database coming soon — add your items.json to power this page.</p>
+      </div>
+    </section>
+
+    <section id="classes" class="section placeholder">
+      <div class="container">
+        <h2>Classes</h2>
+        <p>Create your class pages at /classes/ — each class supports abilities, lore, and guides.</p>
+      </div>
+    </section>
+
+    <section id="map" class="section placeholder">
+      <div class="container">
+        <h2>Live Map</h2>
+        <p>Embed your map (e.g. dynmap / overviewer) here. Use an iframe to show the live map.</p>
+      </div>
+    </section>
+
+    <!-- Community -->
+    <section id="community" class="section community">
+      <div class="container">
+        <h2>Community</h2>
+        <div class="community-grid">
+          <div class="card">
+            <h4>Discord</h4>
+            <p>Join our Discord to find players and guilds.</p>
+            <a class="btn" href="https://discord.gg/REPLACE">Join Discord</a>
+          </div>
+          <div class="card">
+            <h4>Forums</h4>
+            <p>Report bugs, request features, and chat with other adventurers.</p>
+            <a class="btn" href="https://forums.joyedforlife.xyz">Forums</a>
+          </div>
+          <div class="card">
+            <h4>Wiki</h4>
+            <p>Player-maintained wiki with items, quests, and guides.</p>
+            <a class="btn" href="https://wiki.joyedforlife.xyz">Open Wiki</a>
+          </div>
         </div>
       </div>
-
-      <div class="plugin-card">
-        <img src="https://via.placeholder.com/400x180" alt="Goose">
-        <div class="plugin-card-content">
-          <h3>Goose</h3>
-          <p>Find hidden geese around the world, track progress, and compete with friends.</p>
-          <div class="price">$3.00</div>
-          <a href="#" class="buy-btn">Buy Now</a>
-        </div>
-      </div>
-
-    </div>
+    </section>
   </main>
 
-  <div class="footer">
-    © 2025 Joyedlion. All rights reserved.
-  </div>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <strong>Joyedforlife</strong>
+        <p>© <span id="year"></span> Joyedforlife — Unaffiliated with Mojang AB.</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="#privacy">Privacy</a>
+        <a href="#tos">Terms</a>
+        <a href="mailto:admin@joyedforlife.xyz">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
